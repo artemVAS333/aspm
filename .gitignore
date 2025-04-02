@@ -6,11 +6,12 @@
 .DS_Store
 
 # IDE - VSCode
-.vscode/*
+.vscode/
+# .vscode/*
 # !.vscode/settings.json
 # !.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+# !.vscode/launch.json
+# !.vscode/extensions.json
 
 # Binary Code
 /public/binary
