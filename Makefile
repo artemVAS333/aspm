@@ -1,8 +1,10 @@
-CXX := clang
-CXXFLAGS := -Iincludes
-SRC_DIR := src
+C := clang
+CFLAGS := -Iincludes
+
 BUILD_DIR := build
-TARGET := $(BUILD_DIR)/main
+
+SRC_DIR := src
+SRC_TARGET := $(BUILD_DIR)/main
 
 SRCS := $(shell find $(SRC_DIR) -name '*.c')
 OBJS := $(SRCS:%.c=$(BUILD_DIR)/%.o)
@@ -11,18 +13,18 @@ OBJS := $(SRCS:%.c=$(BUILD_DIR)/%.o)
 
 all: build run
 
-build: $(TARGET)
+build: $(SRC_TARGET)
 
-$(TARGET): $(OBJS)
+$(SRC_TARGET): $(OBJS)
 	@mkdir -p $(BUILD_DIR)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $(TARGET)
+	$(C) $(CFLAGS) $(OBJS) -o $(SRC_TARGET)
 
 $(BUILD_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(C) $(CFLAGS) -c $< -o $@
 
-run: build
-	@$(TARGET)
+run: $(SRC_TARGET)
+	@$(SRC_TARGET)
 
 clean:
 	@rm -rf $(BUILD_DIR)
