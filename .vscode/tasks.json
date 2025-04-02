@@ -1,0 +1,39 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build C++",
+			"type": "shell",
+			"command": "make build",
+			"group": "build",
+			"problemMatcher": ["$gcc"],
+			"detail": "Compiling C++ files"
+		},
+		{
+			"label": "Clear build/",
+			"type": "shell",
+			"command": "make clean",
+			"problemMatcher": ["$gcc"],
+			"detail": "Delete dir build/"
+		},
+		{
+			"label": "Run C++",
+			"type": "shell",
+			"command": "make run",
+			"dependsOn": "Build C++",
+			"problemMatcher": [],
+			"detail": "Running the compiled C++ program"
+		},
+		{
+			"label": "Build and Run C++",
+			"type": "shell",
+			"dependsOn": ["Build C++", "Run C++"],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": [],
+			"detail": "Building and running the C++ program"
+		}
+	]
+}
