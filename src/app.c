@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "hello/hello.h"
+#include "hello.h"
 
 int main(int argc, char const *argv[])
 {
