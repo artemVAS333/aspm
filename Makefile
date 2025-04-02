@@ -5,7 +5,7 @@ BUILD_DIR := build
 TARGET := $(BUILD_DIR)/main
 
 SRCS := $(shell find $(SRC_DIR) -name '*.c')
-OBJS := $(SRCS:%.cpp=$(BUILD_DIR)/%.o)
+OBJS := $(SRCS:%.c=$(BUILD_DIR)/%.o)
 
 .PHONY: all build run clean
 
@@ -17,7 +17,7 @@ $(TARGET): $(OBJS)
 	@mkdir -p $(BUILD_DIR)
 	$(CXX) $(CXXFLAGS) $(OBJS) -o $(TARGET)
 
-$(BUILD_DIR)/%.o: %.cpp
+$(BUILD_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
