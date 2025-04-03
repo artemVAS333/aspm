@@ -3,7 +3,6 @@
 #include <unordered_map>
 
 #include "input.h"
-#include "tools.h"
 
 using namespace std;
 using json = nlohmann::json;
@@ -17,12 +16,15 @@ namespace input
 typedef enum
 {
 	CMD_UNKNOWN,
-	CMD_INSTALL
+	CMD_INSTALL,
+	CMD_LIST
 } Command;
 
 unordered_map<string, Command> commandMap = {
 	{"-i", CMD_INSTALL},
-	{"-install", CMD_INSTALL}};
+	{"--install", CMD_INSTALL},
+	{"-l", CMD_LIST},
+	{"--list", CMD_LIST}};
 
 void input::init(int argc, char *argv[])
 {
@@ -54,7 +56,22 @@ void input::parseArguments(int argc, char *argv[], const json &json_obj)
 		if (commandMap.find(arg) != commandMap.end())
 		{
 			currentCommand = commandMap[arg];
+			if (currentCommand == CMD_LIST)
+			{
+				cout << "Available packages:\n";
+				for (auto &[key, value] : json_obj.items())
+				{
+					cout << key << ": " << value << endl;
+				}
+				return;
+			}
 			continue;
+		}
+
+		if (currentCommand == CMD_UNKNOWN)
+		{
+			cerr << "Unknown command: " << arg << endl;
+			return;
 		}
 
 		cout << arg;
