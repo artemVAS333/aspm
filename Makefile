@@ -1,5 +1,5 @@
 CPP := g++
-CPPFLAGS := -Iincludes -Isrc
+CPPFLAGS := -Wall -Wextra -pedantic -Iincludes -Isrc
 
 BUILD_DIR := build
 
@@ -13,7 +13,7 @@ TEST_DIR := test
 TEST_TARGET := $(BUILD_DIR)/testProgram
 
 TEST_SRCS := $(shell find $(TEST_DIR) -name '*.cpp')
-TEST_OBJS := $(TEST_SRCS:%.cpp=$(BUILD_DIR)/%.o)
+TEST_OBJS := $(filter-out $(BUILD_DIR)/src/main.o, $(OBJS) $(TEST_SRCS:%.cpp=$(BUILD_DIR)/%.o))
 
 .PHONY: all build run clean test
 
@@ -32,9 +32,9 @@ $(BUILD_DIR)/%.o: %.cpp
 test: $(TEST_TARGET)
 	@$(TEST_TARGET)
 
-$(TEST_TARGET): $(TEST_OBJS) $(OBJS)
+$(TEST_TARGET): $(TEST_OBJS)
 	@mkdir -p $(BUILD_DIR)
-	$(CPP) $(CPPFLAGS) $(TEST_OBJS) $(OBJS) -o $(TEST_TARGET)
+	$(CPP) $(CPPFLAGS) $(TEST_OBJS) -o $(TEST_TARGET)
 
 run: build
 	@$(TARGET)
