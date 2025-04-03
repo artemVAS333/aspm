@@ -5,5 +5,5 @@ using namespace std;
 
 void app()
 {
-	cout << "Hello, app!\n";
+	cout << "Hello, app1!\n";
 }
