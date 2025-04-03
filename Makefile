@@ -1,5 +1,5 @@
 CPP := g++
-CPPFLAGS := -Wall -Wextra -pedantic -Iincludes -Isrc
+CPPFLAGS := -std=c++20 -Wall -Wextra -pedantic -Iincludes -Isrc
 
 BUILD_DIR := build
 

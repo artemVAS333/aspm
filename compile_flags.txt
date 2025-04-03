@@ -1,3 +1,0 @@
--I
-./includes
--std=c++20
