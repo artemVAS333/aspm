@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+#include <iomanip>
 
 #include "input.h"
 
@@ -11,20 +12,37 @@ namespace input
 {
 	void init(int argc, char *argv[]);
 	void parseArguments(int argc, char *argv[], const json &json_obj);
+	void printHelp(const json &json_obj);
 }
 
 typedef enum
 {
 	CMD_UNKNOWN,
 	CMD_INSTALL,
-	CMD_LIST
+	CMD_LIST,
+	CMD_HELP
 } Command;
 
 unordered_map<string, Command> commandMap = {
 	{"-i", CMD_INSTALL},
 	{"--install", CMD_INSTALL},
 	{"-l", CMD_LIST},
-	{"--list", CMD_LIST}};
+	{"--list", CMD_LIST},
+	{"--help", CMD_HELP}};
+
+void input::printHelp(const nlohmann::json &json_obj)
+{
+	cout << "Available commands:\n";
+
+	cout << left << setw(20) << "--install, -i" << ": Install a package\n";
+	cout << left << setw(20) << "--list, -l" << ": List available packages\n";
+	cout << left << setw(20) << "--help" << ": Show this help message\n";
+
+	for (auto &[key, value] : json_obj.items())
+	{
+		cout << left << setw(20) << key << ": " << value << endl;
+	}
+}
 
 void input::init(int argc, char *argv[])
 {
@@ -56,7 +74,13 @@ void input::parseArguments(int argc, char *argv[], const json &json_obj)
 		if (commandMap.find(arg) != commandMap.end())
 		{
 			currentCommand = commandMap[arg];
-			if (currentCommand == CMD_LIST)
+
+			if (currentCommand == CMD_HELP)
+			{
+				printHelp(json_obj);
+				return;
+			}
+			else if (currentCommand == CMD_LIST)
 			{
 				cout << "Available packages:\n";
 				for (auto &[key, value] : json_obj.items())

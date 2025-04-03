@@ -2,8 +2,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "json.hpp"
 
-int get_git(char* p, char* path);
-nlohmann::json getjson(char *path);
-nlohmann::json updatejson(char *path, nlohmann::json &new_data);
+using json = nlohmann::json;
+
+int get_git(char *p, char *path);
+json getjson(char *path);
+json updatejson(char *path, nlohmann::json &new_data);
