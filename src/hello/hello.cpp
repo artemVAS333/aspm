@@ -1,6 +1,3 @@
 #include "hello.h"
 
-void hello()
-{
-	printf("Hello, World!\n");
-}
+void hello() { printf("Hello, World!\n"); }

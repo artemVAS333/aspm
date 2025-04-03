@@ -1,10 +1,12 @@
-#include <stdio.h>
+#include <iostream>
+#include <vector>
 
 #include "hello.h"
 
+using namespace std;
+
 int main()
 {
-	hello();
 	hello();
 	return 0;
 }
