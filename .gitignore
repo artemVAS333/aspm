@@ -4,6 +4,9 @@
 
 /test/*
 
+/bin
+/build_bin 
+
 # OS
 .DS_Store
 

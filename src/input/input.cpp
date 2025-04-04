@@ -15,13 +15,6 @@ namespace input
 	void printHelp(const json &json_obj);
 }
 
-typedef enum
-{
-	CMD_UNKNOWN,
-	CMD_INSTALL,
-	CMD_LIST,
-	CMD_HELP
-} Command;
 
 unordered_map<string, Command> commandMap = {
 	{"-i", CMD_INSTALL},
@@ -65,6 +58,7 @@ void input::init(int argc, char *argv[])
 
 void input::parseArguments(int argc, char *argv[], const json &json_obj)
 {
+  cout << "parsing";
 	Command currentCommand = CMD_UNKNOWN;
 
 	for (int i = 1; i < argc; i++)
@@ -104,7 +98,21 @@ void input::parseArguments(int argc, char *argv[], const json &json_obj)
 		{
 			if (json_obj.contains(arg))
 			{
-				cout << ": " << json_obj[arg];
+        json json_temp;
+        json_temp["name"] = json_obj["name"];
+        json_temp["version"] = json_obj["version"];
+
+        json_temp["codename"] = json_obj["codename"];
+        
+        json_temp["compily_process"] = json_obj["compily_process"];
+        cout << ": " << json_obj[arg];
+        // for(const auto &el : json_obj[arg]["depend"]){
+        //   if (json_obj.contains(el)){
+        //     int res = install(json_obj[el])
+        //   }
+        //
+        // }
+        int res = install(json_temp);
 			}
 			else
 			{
