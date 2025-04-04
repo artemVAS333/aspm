@@ -31,9 +31,7 @@ nlohmann::json updatejson(char *path, nlohmann::json &new_data)
     nlohmann::json json_obj = getjson(path);
 
     for (auto it = new_data.begin(); it != new_data.end(); ++it)
-    {
         json_obj[it.key()] = it.value();
-    }
 
     std::ofstream file(path);
     if (!file)

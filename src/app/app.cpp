@@ -1,9 +1,17 @@
 #include <iostream>
+
 #include "app.h"
+#include "input.h"
 
 using namespace std;
 
-void app()
+void app(int argc, char *argv[])
 {
-	cout << "Hello, app!\n";
+	if (argc <= 1)
+	{
+		cout << "No arguments\n";
+		return;
+	}
+
+	input::init(argc, argv);
 }

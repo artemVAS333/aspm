@@ -1,3 +1,3 @@
 #pragma once
 
-void app();
+void app(int argc, char *argv[]);

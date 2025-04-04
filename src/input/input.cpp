@@ -15,7 +15,6 @@ namespace input
 	void printHelp(const json &json_obj);
 }
 
-
 unordered_map<string, Command> commandMap = {
 	{"-i", CMD_INSTALL},
 	{"--install", CMD_INSTALL},
@@ -58,7 +57,7 @@ void input::init(int argc, char *argv[])
 
 void input::parseArguments(int argc, char *argv[], const json &json_obj)
 {
-  
+
 	Command currentCommand = CMD_UNKNOWN;
 
 	for (int i = 1; i < argc; i++)
@@ -78,9 +77,7 @@ void input::parseArguments(int argc, char *argv[], const json &json_obj)
 			{
 				cout << "Available packages:\n";
 				for (auto &[key, value] : json_obj.items())
-				{
 					cout << key << ": " << value << endl;
-				}
 				return;
 			}
 			continue;
@@ -98,12 +95,11 @@ void input::parseArguments(int argc, char *argv[], const json &json_obj)
 		{
 			if (json_obj.contains(arg))
 			{
-        
-        cout << ": " << json_obj[arg]<< endl;
-        
-        cout << "install"<< endl;
-        int res = install(json_obj[arg]);
-        if(res) cout << "installed";
+				cout << ": " << json_obj[arg] << endl;
+				cout << "install" << endl;
+				int res = install(json_obj[arg]);
+				if (res)
+					cout << "installed";
 			}
 			else
 			{
