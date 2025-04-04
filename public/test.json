@@ -12,7 +12,7 @@
     "type": "wget"
   },
   "hello": {
-    "codename": "codename",
+    "codename": "https://github.com/VLazorykOOP/lab2oop-24-UnknownStepan",
     "compily_process": "make",
     "name": "test",
     "sum": "sum",
