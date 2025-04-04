@@ -11,6 +11,18 @@
     "depend": [],
     "type": "wget"
   },
+  "helloworld": {
+    "codename": "https://raw.githubusercontent.com/artemVAS333/aspm/refs/heads/hello/apps/hello",
+    "compily_process": [
+      "cp ./build_bin/hello ./bin/",
+      "rm -rf ./build_bin/*"
+    ],
+    "name": "helloworld",
+    "sum": "sum1",
+    "version": "1.0.0",
+    "depend": [],
+    "type": "wget"
+  },
   "hello": {
     "codename": "https://github.com/VLazorykOOP/lab2oop-24-UnknownStepan",
     "compily_process": ["make"],
