@@ -1,9 +1,13 @@
 {
+  "example":{
+    "$(BBin)":"buildPath",
+    "$(Bin)": "binPath"
+  },
   "test": {
     "codename": "https://raw.githubusercontent.com/artemVAS333/aspm/refs/heads/commands/public/test.json",
     "compily_process": [
-      "cp ./build_bin/test.json ./public/test.json",
-      "rm -rf ./build_bin/test.json"
+      "cp $(BBin)test.json ./public/test.json",
+      "rm -rf $(BBin)test.json"
     ],
     "name": "test1",
     "sum": "sum1",
@@ -14,8 +18,8 @@
   "helloworld": {
     "codename": "https://raw.githubusercontent.com/artemVAS333/aspm/refs/heads/hello/apps/hello",
     "compily_process": [
-      "chmod +x ./build_bin/hello ;cp ./build_bin/hello ./bin/",
-      "rm -rf ./build_bin/*"
+      "chmod +x $(BBin)hello ;cp $(BBin)hello $(Bin)",
+      "rm -rf $(BBin)*"
     ],
     "name": "helloworld",
     "sum": "sum1",
