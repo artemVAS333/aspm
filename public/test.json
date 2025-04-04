@@ -13,7 +13,7 @@
   },
   "hello": {
     "codename": "https://github.com/VLazorykOOP/lab2oop-24-UnknownStepan",
-    "compily_process": "make",
+    "compily_process": ["make"],
     "name": "test",
     "sum": "sum",
     "version": "1.0.0",
