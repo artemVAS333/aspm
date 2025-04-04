@@ -46,7 +46,7 @@ void input::init(int argc, char *argv[])
 
 	try
 	{
-		json json_obj = getjson("public/test.json");
+		json json_obj = getjson("public/packages/package_list.json");
 		parseArguments(argc, argv, json_obj);
 	}
 	catch (const exception &e)
