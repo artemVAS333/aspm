@@ -58,7 +58,7 @@ void input::init(int argc, char *argv[])
 
 void input::parseArguments(int argc, char *argv[], const json &json_obj)
 {
-  cout << "parsing";
+  cout << "parsing"<<endl;
 	Command currentCommand = CMD_UNKNOWN;
 
 	for (int i = 1; i < argc; i++)
@@ -99,19 +99,24 @@ void input::parseArguments(int argc, char *argv[], const json &json_obj)
 			if (json_obj.contains(arg))
 			{
         json json_temp;
-        json_temp["name"] = json_obj["name"];
-        json_temp["version"] = json_obj["version"];
-
-        json_temp["codename"] = json_obj["codename"];
-        
-        json_temp["compily_process"] = json_obj["compily_process"];
-        cout << ": " << json_obj[arg];
+        json_temp["name"] = json_obj[arg]["name"];
+        json_temp["version"] = json_obj[arg]["version"];
+        json_temp["codename"] = json_obj[arg]["codename"];
+        json_temp["compily_process"] = json_obj[arg]["compily_process"];
+        json_temp["type"] = json_obj[arg]["type"];
+        //json_temp["version"] = json_obj["version"];
+        //
+        //json_temp["codename"] = json_obj["codename"];
+        //
+        //json_temp["compily_process"] = json_obj["compily_process"];
+        cout << ": " << json_obj[arg]<< endl;
         // for(const auto &el : json_obj[arg]["depend"]){
         //   if (json_obj.contains(el)){
         //     int res = install(json_obj[el])
         //   }
         //
         // }
+        cout << "install"<< endl;
         int res = install(json_temp);
 			}
 			else

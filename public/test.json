@@ -1,18 +1,35 @@
 {
   "test": {
-    "codename": "codename1",
-    "compily_process": "make1",
+    "codename": "https://raw.githubusercontent.com/artemVAS333/aspm/refs/heads/commands/public/test.json",
+    "compily_process": [
+      "cp ./build_bin/test.json ./public/test.json",
+      "rm -rf ./build_bin/test.json"
+    ],
     "name": "test1",
     "sum": "sum1",
     "version": "1.0.0",
-    "depend": []
+    "depend": [],
+    "type": "wget"
+  },
+  "helloworld": {
+    "codename": "https://raw.githubusercontent.com/artemVAS333/aspm/refs/heads/hello/apps/hello",
+    "compily_process": [
+      "chmod +x ./build_bin/hello ;cp ./build_bin/hello ./bin/",
+      "rm -rf ./build_bin/*"
+    ],
+    "name": "helloworld",
+    "sum": "sum1",
+    "version": "1.0.0",
+    "depend": [],
+    "type": "wget"
   },
   "hello": {
-    "codename": "codename",
-    "compily_process": "make",
+    "codename": "https://github.com/VLazorykOOP/lab2oop-24-UnknownStepan",
+    "compily_process": ["make"],
     "name": "test",
     "sum": "sum",
     "version": "1.0.0",
-    "depend": []
+    "depend": [],
+    "type": "git"
   }
 }

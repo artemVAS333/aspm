@@ -12,23 +12,33 @@ using namespace std;
 
 int install(json &json_obj) {
   try {
+    char command[400];
     char app_js[] = "./public/installed_app.json"; 
     char path[] = "./build_bin/";
-    cout << "compile";
+    cout << "compile"<<endl;
     json instaled_apps = getjson(app_js);
-    if (instaled_apps.contains(json_obj["name"]) && instaled_apps[json_obj["name"]]["version"] == json_obj["version"]) {
-      cout<< "already latest"<<endl;
-      return 0;
-    }
+    cout << instaled_apps << endl<< json_obj["name"]<<endl;
+    if (instaled_apps.contains(json_obj["name"])) {
+       cout<< "already latest"<<endl;
+       return 0;
+     }
+    cout << "preparing"<<endl;
     string git_url = json_obj["codename"];
     string name = json_obj["name"];
     char char_array[200];
     std::strcpy(char_array, git_url.c_str());
     
     //system("rm -rf ./build_bin/.git")
-    get_git(char_array, path);
-    cout << "compile";
-    char command[200];
+    cout << "installing"<<endl;
+    if(json_obj["type"] == "git"){
+      get_git(char_array, path);
+    }else{
+      cout << "another";
+      snprintf(command, sizeof(command), "wget -P %s %s", path, char_array);
+      system(command);
+      sleep(3);
+    }
+    cout << "compile_it"<<endl;
     if(json_obj["compily_process"][0] == "make"){
       snprintf(command, sizeof(command), "make -C %s build ;cp %s/build/main ./bin/%s  ;rm -rf %s* ", path,path,name.c_str(),path);
       system(command);
@@ -42,7 +52,7 @@ int install(json &json_obj) {
         system(command);
       }
     }
-    if (json_obj["name"] != "2") {
+    if (json_obj["name"] != "test1") {
       instaled_apps[json_obj["name"]] = json_obj;
       updatejson(app_js, instaled_apps);
 
