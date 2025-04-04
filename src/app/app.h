@@ -1,3 +1,12 @@
 #pragma once
 
-void app(int argc, char *argv[]);
+class App
+{
+private:
+	int argc;
+	char **argv;
+
+public:
+	App(int argc, char *argv[]);
+	void run();
+};

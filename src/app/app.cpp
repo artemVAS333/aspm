@@ -5,7 +5,6 @@
 
 using namespace std;
 
-void app(int argc, char *argv[])
-{
-	input::init(argc, argv);
-}
+App::App(int argc, char *argv[]) : argc(argc), argv(argv) {}
+
+void App::run() { input::init(argc, argv); }

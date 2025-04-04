@@ -1,5 +1,7 @@
 CPP := g++
-CPPFLAGS := -std=c++20 -Wall -Wextra -pedantic -Iincludes -Isrc
+# CPPFLAGS := -std=c++20 -Werror -Wall -Wextra -Wpedantic -Wunused-variable -Iinclude -Isrc
+CPPFLAGS := -std=c++20 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wunused-variable -Wuninitialized -Wconversion -Wdeprecated-declarations -Wformat -Wswitch -Wvla -Wunreachable-code -Iinclude -Isrc
+
 
 BUILD_DIR := build
 

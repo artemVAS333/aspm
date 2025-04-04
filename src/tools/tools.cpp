@@ -11,7 +11,7 @@ using namespace std;
 
 string updateNAME = "test1";
 char buildPath[] = "./bin/build/";
-char installed_json[] = "./public/installed_packages.json";
+char installed_json[] = "./public/installed_app.json";
 char binPath[] = "./bin/";
 
 void replaceSubstring(char *str, const char *target, const char *replacement)
@@ -19,8 +19,8 @@ void replaceSubstring(char *str, const char *target, const char *replacement)
   char *pos = strstr(str, target);
   while (pos)
   {
-    int len = strlen(replacement);
-    int target_len = strlen(target);
+    size_t len = strlen(replacement);
+    size_t target_len = strlen(target);
 
     memmove(pos + len, pos + target_len, strlen(pos + target_len) + 1);
     memcpy(pos, replacement, len);
