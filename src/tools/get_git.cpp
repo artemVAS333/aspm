@@ -12,7 +12,7 @@ int get_git(char *p, char *path)
 
   snprintf(command, sizeof(command), "bash | rm -rf  %s/* %s/.*", path, path);
   system(command);
-  snprintf(command, sizeof(command), "git clone %s %s", p, path);
+  snprintf(command, sizeof(command), "mkdir -p %s; git clone %s %s", path,p, path);
 
   int result = system(command);
 

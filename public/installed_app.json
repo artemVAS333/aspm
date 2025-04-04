@@ -1,2 +1,13 @@
-{}
-
+{
+    "test": {
+        "codename": "https://github.com/VLazorykOOP/lab2oop-24-UnknownStepan",
+        "compily_process": [
+            "make"
+        ],
+        "depend": [],
+        "name": "test",
+        "sum": "sum",
+        "type": "git",
+        "version": "1.0.0"
+    }
+}

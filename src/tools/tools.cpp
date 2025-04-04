@@ -13,6 +13,21 @@ using namespace std;
 string updateNAME  = "test1";
 char buildPath[] = "./build_bin/";
 char installed_json[] = "./public/installed_app.json";
+char binPath[] = "./bin/";
+
+void replaceSubstring(char* str, const char* target, const char* replacement) {
+    char* pos = strstr(str, target);
+    while (pos) {
+        int len = strlen(replacement);
+        int target_len = strlen(target);
+
+        memmove(pos + len, pos + target_len, strlen(pos + target_len) + 1);
+
+        memcpy(pos, replacement, len);
+      
+        pos = strstr(pos + len, target);
+    }
+}
 
 
 int install(const json &json_obj) {
@@ -40,13 +55,15 @@ int install(const json &json_obj) {
     }
     
     if(json_obj["compily_process"][0] == "make"){
-      snprintf(command, sizeof(command), "make -C %s build ;cp %s/build/main ./bin/%s  ;rm -rf %s* ", buildPath, buildPath,name.c_str(), buildPath);
+      snprintf(command, sizeof(command), "make -C %s build ;cp %s/build/main %s%s  ;rm -rf %s* ", buildPath, buildPath,binPath,name.c_str(), buildPath);
       system(command);
     }
     else {
       for( auto& el : json_obj["compily_process"]) {
         string eli = el;
         std::strcpy(command, eli.c_str());
+        replaceSubstring(command, "$(BBin)", buildPath);
+        replaceSubstring(command, "$(Bin)", binPath);
         system(command);
       }
     }

@@ -19,5 +19,6 @@ int install(const json &json_obj);
 extern char installed_json[];
 extern char buildPath[];
 extern std::string updateNAME;
+extern char binPath[];
 
 #endif
