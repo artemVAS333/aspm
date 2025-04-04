@@ -8,5 +8,5 @@
 using json = nlohmann::json;
 
 int get_git(char *p, char *path);
-json getjson(char *path);
+json getjson(const char *path);
 json updatejson(char *path, nlohmann::json &new_data);
