@@ -10,8 +10,8 @@ using namespace nlohmann;
 using namespace std;
 
 string updateNAME = "test1";
-char buildPath[] = "./build_bin/";
-char installed_json[] = "./public/installed_app.json";
+char buildPath[] = "./bin/build/";
+char installed_json[] = "./public/installed_packages.json";
 char binPath[] = "./bin/";
 
 void replaceSubstring(char *str, const char *target, const char *replacement)
@@ -80,6 +80,22 @@ int install(const json &json_obj)
       instaled_apps[json_obj["name"]] = json_obj;
       updatejson(installed_json, instaled_apps);
     }
+  }
+  catch (const exception &e)
+  {
+    cerr << e.what();
+    return 0;
+  }
+  return 1;
+}
+
+int delete_app(const json &json_obj)
+{
+  try
+  {
+    json instaled_apps = getjson(installed_json);
+    instaled_apps.erase(json_obj["name"]);
+    updatejson(installed_json, instaled_apps);
   }
   catch (const exception &e)
   {

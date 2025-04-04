@@ -2,41 +2,44 @@
 #include <fstream>
 #include "tools.h"
 
-nlohmann::json getjson(const char *path)
+using namespace std;
+using namespace nlohmann;
+
+json getjson(const char *path)
 {
-    std::ifstream file(path);
+    ifstream file(path);
     if (!file)
     {
-        std::cerr << "Failed to open file: " << path << std::endl;
-        return nlohmann::json{};
+        cerr << "Failed to open file: " << path << endl;
+        return json{};
     }
 
-    nlohmann::json json_obj;
+    json json_obj;
     try
     {
         file >> json_obj;
     }
-    catch (const std::exception &e)
+    catch (const exception &e)
     {
-        std::cerr << "JSON parse error: " << e.what() << std::endl;
-        return nlohmann::json{};
+        cerr << "JSON parse error: " << e.what() << endl;
+        return json{};
     }
 
     file.close();
     return json_obj;
 }
 
-nlohmann::json updatejson(char *path, nlohmann::json &new_data)
+json updatejson(char *path, json &new_data)
 {
-    nlohmann::json json_obj = getjson(path);
+    json json_obj = getjson(path);
 
     for (auto it = new_data.begin(); it != new_data.end(); ++it)
         json_obj[it.key()] = it.value();
 
-    std::ofstream file(path);
+    ofstream file(path);
     if (!file)
     {
-        std::cerr << "Failed to open file for writing: " << path << std::endl;
+        cerr << "Failed to open file for writing: " << path << endl;
         return json_obj;
     }
 

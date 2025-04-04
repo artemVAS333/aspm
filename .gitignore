@@ -1,11 +1,9 @@
 # compiled output
 /dist
 /build
-
-/test/*
-
 /bin
-/build_bin 
+
+test/*
 
 # OS
 .DS_Store
