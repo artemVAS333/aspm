@@ -29,7 +29,7 @@ json getjson(const char *path)
     return json_obj;
 }
 
-json updatejson(char *path, json &new_data)
+json updatejson(const char *path, json &new_data)
 {
     json json_obj = getjson(path);
 

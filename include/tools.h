@@ -7,17 +7,18 @@
 
 using namespace nlohmann;
 
-int get_git(char *p, char *path);
+int get_git(const char *p, const char *path);
 json getjson(const char *path);
-json updatejson(char *path, nlohmann::json &new_data);
+json updatejson(const char *path, json &new_data);
 int install(const json &json_obj);
+bool uninstall(const std::string &app_name);
 
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
-extern char installed_json[];
-extern char buildPath[];
-extern std::string updateNAME;
-extern char binPath[];
+// extern char installed_json[];
+// extern char buildPath[];
+// extern std::string updateNAME;
+// extern char binPath[];
 
 #endif

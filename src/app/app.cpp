@@ -25,6 +25,7 @@ unordered_map<string, Command> commandMap = {
 	{"--list", CMD_LIST},
 	{"--help", CMD_HELP}};
 
+App::App() : argc(0), argv(nullptr) {}
 App::App(int argc, char *argv[]) : argc(argc), argv(argv) {}
 
 void App::run() { initArguments(); }
@@ -43,17 +44,10 @@ void printHelp(const json &json_obj)
 
 void App::initArguments()
 {
-	json json_obj = getjson("public/packages/manifest.json");
-
-	if (argc <= 1)
-	{
-		printHelp(json_obj);
-		return;
-	}
-
 	try
 	{
-		parseArguments(json_obj);
+		json json_obj = getjson("public/packages/manifest.json");
+		argc <= 1 ? printHelp(json_obj) : parseArguments(json_obj);
 	}
 	catch (const exception &e)
 	{

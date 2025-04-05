@@ -13,8 +13,11 @@ private:
 	char **argv;
 
 public:
+	App();
 	App(int argc, char *argv[]);
+
 	void run();
+
 	void initArguments();
 	void parseArguments(const json &json_obj);
 };
