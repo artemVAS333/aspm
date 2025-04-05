@@ -1,7 +1,6 @@
 #include <iostream>
 
 #include "tools.h"
-#include "input.h"
 
 #include <string>
 #include <vector>
@@ -80,22 +79,6 @@ int install(const json &json_obj)
       instaled_apps[json_obj["name"]] = json_obj;
       updatejson(installed_json, instaled_apps);
     }
-  }
-  catch (const exception &e)
-  {
-    cerr << e.what();
-    return 0;
-  }
-  return 1;
-}
-
-int delete_app(const json &json_obj)
-{
-  try
-  {
-    json instaled_apps = getjson(installed_json);
-    instaled_apps.erase(json_obj["name"]);
-    updatejson(installed_json, instaled_apps);
   }
   catch (const exception &e)
   {
