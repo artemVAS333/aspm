@@ -6,7 +6,7 @@
   "test": {
     "codename": "https://raw.githubusercontent.com/artemVAS333/aspm/refs/heads/testCompile/public/test.json",
     "compily_process": [
-      "cp $(BBin)test.json ./public/test.json",
+      "cp $(BBin)test.json $(Home)./public/test.json",
       "rm -rf $(BBin)test.json"
     ],
     "name": "test1",
