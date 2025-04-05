@@ -67,6 +67,7 @@ int install(const json &json_obj) {
         std::strcpy(command, eli.c_str());
         replaceSubstring(command, "$(BBin)", buildPath.c_str());
         replaceSubstring(command, "$(Bin)", binPath.c_str());
+        replaceSubstring(command, "$(Home)", mainPath.c_str());
         system(command);
       }
     }

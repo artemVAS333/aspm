@@ -4,7 +4,7 @@
     "$(Bin)": "binPath"
   },
   "test": {
-    "codename": "https://raw.githubusercontent.com/artemVAS333/aspm/refs/heads/commands/public/test.json",
+    "codename": "https://raw.githubusercontent.com/artemVAS333/aspm/refs/heads/testCompile/public/test.json",
     "compily_process": [
       "cp $(BBin)test.json ./public/test.json",
       "rm -rf $(BBin)test.json"
@@ -39,7 +39,7 @@
   "python": {
     "codename": "https://www.python.org/ftp/python/3.13.2/Python-3.13.2.tar.xz",
     "compily_process": [
-      "cd $(BBin); tar xvf Python-3.13.2.tar.xz;cd Python-3.13.2;./configure --prefix=/usr/local/;make;make install;cd ..;rm -rf Python-3.13.2;rm Python-3.13.2.tar.xz;cd ../../"
+      "cd $(BBin); tar xvf Python-3.13.2.tar.xz;cd Python-3.13.2;./configure --prefix=$(Home);make;make install;cd ..;rm -rf Python-3.13.2;rm Python-3.13.2.tar.xz;cd ../../"
     ],
     "name": "python",
     "version": "3.12.2",

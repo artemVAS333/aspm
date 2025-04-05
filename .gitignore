@@ -6,6 +6,11 @@
 
 /bin
 /build_bin 
+/include
+/lib
+/share
+
+/public/installed_app.json 
 
 # OS
 .DS_Store
