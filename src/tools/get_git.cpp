@@ -1,6 +1,6 @@
 #include "tools.h"
 
-int get_git(char *p, char *path)
+int get_git(char *p, const char *path)
 {
 
   char command[200];

@@ -1,6 +1,6 @@
 {
-  "example":{
-    "$(BBin)":"buildPath",
+  "example": {
+    "$(BBin)": "buildPath",
     "$(Bin)": "binPath"
   },
   "test": {
@@ -35,5 +35,15 @@
     "version": "1.0.0",
     "depend": [],
     "type": "git"
+  },
+  "python": {
+    "codename": "https://www.python.org/ftp/python/3.13.2/Python-3.13.2.tar.xz",
+    "compily_process": [
+      "cd $(BBin); tar xvf Python-3.13.2.tar.xz;cd Python-3.13.2;./configure --prefix=/usr/local/;make;make install;cd ..;rm -rf Python-3.13.2;rm Python-3.13.2.tar.xz;cd ../../"
+    ],
+    "name": "python",
+    "version": "3.12.2",
+    "depend": [],
+    "type": "wget"
   }
 }

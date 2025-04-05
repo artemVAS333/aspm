@@ -7,18 +7,19 @@
 
 using json = nlohmann::json;
 
-int get_git(char *p, char *path);
+int get_git(char *p, const char *path);
 json getjson(const char *path);
-json updatejson(char *path, nlohmann::json &new_data);
+json updatejson(const char *path, nlohmann::json &new_data);
 int install(const json &json_obj);
 
 
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
-extern char installed_json[];
-extern char buildPath[];
+extern std::string installed_json;
+extern std::string buildPath;
 extern std::string updateNAME;
-extern char binPath[];
-
+extern std::string binPath;
+extern std::string mainPath;
+extern std::string toinstall_json;
 #endif

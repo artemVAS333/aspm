@@ -26,7 +26,7 @@ nlohmann::json getjson(const char *path)
     return json_obj;
 }
 
-nlohmann::json updatejson(char *path, nlohmann::json &new_data)
+nlohmann::json updatejson(const char *path, nlohmann::json &new_data)
 {
     nlohmann::json json_obj = getjson(path);
 

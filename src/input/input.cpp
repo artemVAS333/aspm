@@ -4,9 +4,13 @@
 #include <iomanip>
 
 #include "input.h"
+#include "tools.h"
 
 using namespace std;
 using json = nlohmann::json;
+
+string toinstall_json = "./public/test.json";
+
 
 namespace input
 {
@@ -47,7 +51,8 @@ void input::init(int argc, char *argv[])
 
 	try
 	{
-		json json_obj = getjson("public/test.json");
+    cout << (mainPath + toinstall_json);
+		json json_obj = getjson((mainPath + toinstall_json).data());
 		parseArguments(argc, argv, json_obj);
 	}
 	catch (const exception &e)
