@@ -82,9 +82,7 @@ private:
 	void performOperation(stack<double> &values, stack<char> &operators)
 	{
 		if (values.size() < 2)
-		{
 			throw invalid_argument("Insufficient values in expression");
-		}
 
 		double b = values.top();
 		values.pop();

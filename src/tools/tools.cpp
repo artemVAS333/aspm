@@ -200,7 +200,6 @@ bool uninstall(const string &app_name)
   try
   {
     auto installed_apps = getjson(installed_json_path.c_str());
-    cout << installed_apps << endl;
 
     if (!installed_apps.contains(app_name))
     {

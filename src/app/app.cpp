@@ -103,6 +103,13 @@ void App::parseArguments(const json &json_obj)
 				cout << ": [Key not found]";
 			}
 		}
+
+		if (currentCommand == CMD_DELETE)
+		{
+			cout << ": ";
+			if (uninstall(arg))
+				cout << "uninstalled";
+		}
 		cout << endl;
 	}
 }
