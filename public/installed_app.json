@@ -1,14 +1,1 @@
-{
-    "helloworld": {
-        "codename": "https://raw.githubusercontent.com/artemVAS333/aspm/refs/heads/hello/apps/hello",
-        "compily_process": [
-            "chmod +x $(BBin)hello ;cp $(BBin)hello $(Bin)",
-            "rm -rf $(BBin)*"
-        ],
-        "depend": [],
-        "name": "helloworld",
-        "sum": "sum1",
-        "type": "wget",
-        "version": "1.0.0"
-    }
-}
+{}

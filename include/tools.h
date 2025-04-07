@@ -11,7 +11,7 @@ int get_git(const char *p, const char *path);
 json getjson(const char *path);
 json updatejson(const char *path, json &new_data);
 int install(const json &json_obj);
-bool uninstall(const std::string &app_name);
+// bool uninstall(const std::string &app_name);
 
 #ifndef GLOBALS_H
 #define GLOBALS_H

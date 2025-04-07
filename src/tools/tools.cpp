@@ -105,7 +105,7 @@ using namespace nlohmann;
 const string updateNAME = "test1";
 const string buildPath = "./bin/build/";
 const string installed_json_path = "./public/installed_app.json";
-const string binPath = "./bin/";
+// const string binPath = "./bin/";
 
 void replaceSubstring(string &str, const string &target, const string &replacement)
 {
@@ -122,35 +122,8 @@ bool fetchSource(const json &app)
   string source = app["codename"];
   string command;
 
-  if (app["type"] == "git")
-  {
-    return get_git(source.c_str(), buildPath.c_str()) == 0;
-  }
-
   command = "wget -P " + buildPath + " " + source;
   return system(command.c_str()) == 0;
-}
-
-bool compileApp(const json &app)
-{
-  string command;
-
-  if (app["compily_process"][0] == "make")
-  {
-    command = "make -C " + buildPath + " build ; cp " + buildPath + "build/main " + binPath + app["name"].get<string>() + " ; rm -rf " + buildPath + "*";
-    return system(command.c_str()) == 0;
-  }
-
-  for (const auto &cmd : app["compily_process"])
-  {
-    string cmd_str = cmd;
-    replaceSubstring(cmd_str, "$(BBin)", buildPath);
-    replaceSubstring(cmd_str, "$(Bin)", binPath);
-    if (system(cmd_str.c_str()) != 0)
-      return false;
-  }
-
-  return true;
 }
 
 int install(const json &app)
@@ -172,12 +145,6 @@ int install(const json &app)
       return 0;
     }
 
-    if (!compileApp(app))
-    {
-      cerr << "Compilation failed\n";
-      return 0;
-    }
-
     if (app_name != updateNAME)
     {
       installed_apps[app_name] = app;
@@ -193,47 +160,4 @@ int install(const json &app)
   }
 
   return 1;
-}
-
-bool uninstall(const string &app_name)
-{
-  try
-  {
-    auto installed_apps = getjson(installed_json_path.c_str());
-
-    if (!installed_apps.contains(app_name))
-    {
-      cerr << "Package \"" << app_name << "\" is not installed." << endl;
-      return false;
-    }
-
-    string binary_path = binPath + app_name;
-    if (remove(binary_path.c_str()) != 0)
-    {
-      cerr << "Failed to remove binary: " << binary_path << endl;
-    }
-    else
-    {
-      cout << "Removed binary: " << binary_path << endl;
-    }
-
-    installed_apps.erase(app_name);
-    updatejson(installed_json_path.c_str(), installed_apps);
-
-    string clean_command = "rm -rf " + buildPath + "*";
-    system(clean_command.c_str());
-
-    cout << "Uninstalled package: " << app_name << endl;
-    return true;
-  }
-  catch (const exception &e)
-  {
-    cerr << "Uninstall error: " << e.what() << endl;
-    return false;
-  }
-}
-
-int update()
-{
-  return 0;
 }

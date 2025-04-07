@@ -1,7 +1,7 @@
 CPP := g++
-# CPPFLAGS := -std=c++20 -Werror -Wall -Wextra -Wpedantic -Wunused-variable -Iinclude -Isrc
-CPPFLAGS := -std=c++20 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wunused-variable -Wuninitialized -Wconversion -Wdeprecated-declarations -Wformat -Wswitch -Wvla -Wunreachable-code -Iinclude -Isrc
-
+CPPFLAGS := -std=c++20 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wunused-variable -Wuninitialized -Wconversion -Wdeprecated-declarations -Wformat -Wswitch -Wvla -Wunreachable-code
+INCLUDES := -Iinclude -Isrc
+LDFLAGS := -lcurl
 
 BUILD_DIR := build
 
@@ -25,18 +25,18 @@ build: $(TARGET)
 
 $(TARGET): $(OBJS)
 	@mkdir -p $(BUILD_DIR)
-	$(CPP) $(CPPFLAGS) $(OBJS) -o $(TARGET)
+	$(CPP) $(CPPFLAGS) $(INCLUDES) $(OBJS) $(LDFLAGS) -o $(TARGET)
 
 $(BUILD_DIR)/%.o: %.cpp
 	@mkdir -p $(dir $@)
-	$(CPP) $(CPPFLAGS) -c $< -o $@
+	$(CPP) $(CPPFLAGS) $(INCLUDES) -c $< -o $@
 
 test: $(TEST_TARGET)
 	@$(TEST_TARGET)
 
 $(TEST_TARGET): $(TEST_OBJS)
 	@mkdir -p $(BUILD_DIR)
-	$(CPP) $(CPPFLAGS) $(TEST_OBJS) -o $(TEST_TARGET)
+	$(CPP) $(CPPFLAGS) $(INCLUDES) $(TEST_OBJS) $(LDFLAGS) -o $(TEST_TARGET)
 
 run: build
 	@$(TARGET)

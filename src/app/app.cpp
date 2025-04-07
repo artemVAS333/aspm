@@ -107,8 +107,8 @@ void App::parseArguments(const json &json_obj)
 		if (currentCommand == CMD_DELETE)
 		{
 			cout << ": ";
-			if (uninstall(arg))
-				cout << "uninstalled";
+			// if (uninstall(arg))
+			// 	cout << "uninstalled";
 		}
 		cout << endl;
 	}
