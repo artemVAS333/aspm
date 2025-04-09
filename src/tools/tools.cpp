@@ -10,12 +10,6 @@
 using namespace nlohmann;
 using namespace std;
 
-string updateNAME  = "test1";
-
-
-string buildPath = mainPath + "./build/";
-string installed_json = mainPath + "./public/installed_app.json";
-string binPath = mainPath + "./bin/";
 
 void replaceSubstring(char* str, const char* target, const char* replacement) {
     char* pos = strstr(str, target);
@@ -34,6 +28,7 @@ void replaceSubstring(char* str, const char* target, const char* replacement) {
 
 int install(const json &json_obj) {
   try {
+    cout << "JSON:" << installed_json  <<endl;
     char command[400];
         
     json instaled_apps = getjson(installed_json.c_str());

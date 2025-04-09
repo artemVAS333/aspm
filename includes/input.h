@@ -1,6 +1,6 @@
 #pragma once
 #include <tools.h>
-
+#include "globals.h"
 using json = nlohmann::json;
 
 namespace input

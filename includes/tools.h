@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string>
 #include "json.hpp"
+#include "globals.h"
 
 using json = nlohmann::json;
 
@@ -12,14 +13,3 @@ json getjson(const char *path);
 json updatejson(const char *path, nlohmann::json &new_data);
 int install(const json &json_obj);
 
-
-#ifndef GLOBALS_H
-#define GLOBALS_H
-
-extern std::string installed_json;
-extern std::string buildPath;
-extern std::string updateNAME;
-extern std::string binPath;
-extern std::string mainPath;
-extern std::string toinstall_json;
-#endif
