@@ -91,73 +91,73 @@
 
 // int update() { return 0; }
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <fstream>
-#include <json.hpp>
+// #include <iostream>
+// #include <string>
+// #include <vector>
+// #include <fstream>
+// #include <json.hpp>
 
-#include "tools.h"
+// #include "tools.h"
 
-using namespace std;
-using namespace nlohmann;
+// using namespace std;
+// using namespace nlohmann;
 
-const string updateNAME = "test1";
-const string buildPath = "./bin/build/";
-const string installed_json_path = "./public/installed_app.json";
-// const string binPath = "./bin/";
+// const string updateNAME = "test1";
+// const string buildPath = "./bin/build/";
+// const string installed_json_path = "./public/installed_app.json";
+// // const string binPath = "./bin/";
 
-void replaceSubstring(string &str, const string &target, const string &replacement)
-{
-  size_t pos = 0;
-  while ((pos = str.find(target, pos)) != string::npos)
-  {
-    str.replace(pos, target.length(), replacement);
-    pos += replacement.length();
-  }
-}
+// void replaceSubstring(string &str, const string &target, const string &replacement)
+// {
+//   size_t pos = 0;
+//   while ((pos = str.find(target, pos)) != string::npos)
+//   {
+//     str.replace(pos, target.length(), replacement);
+//     pos += replacement.length();
+//   }
+// }
 
-bool fetchSource(const json &app)
-{
-  string source = app["codename"];
-  string command;
+// bool fetchSource(const json &app)
+// {
+//   string source = app["codename"];
+//   string command;
 
-  command = "wget -P " + buildPath + " " + source;
-  return system(command.c_str()) == 0;
-}
+//   command = "wget -P " + buildPath + " " + source;
+//   return system(command.c_str()) == 0;
+// }
 
-int install(const json &app)
-{
-  try
-  {
-    auto installed_apps = getjson(installed_json_path.c_str());
+// int install(const json &app)
+// {
+//   try
+//   {
+//     auto installed_apps = getjson(installed_json_path.c_str());
 
-    string app_name = app["name"];
-    if (installed_apps.contains(app_name))
-    {
-      cout << "Already latest version of " << app_name << endl;
-      return 0;
-    }
+//     string app_name = app["name"];
+//     if (installed_apps.contains(app_name))
+//     {
+//       cout << "Already latest version of " << app_name << endl;
+//       return 0;
+//     }
 
-    if (!fetchSource(app))
-    {
-      cerr << "Failed to fetch source\n";
-      return 0;
-    }
+//     if (!fetchSource(app))
+//     {
+//       cerr << "Failed to fetch source\n";
+//       return 0;
+//     }
 
-    if (app_name != updateNAME)
-    {
-      installed_apps[app_name] = app;
-      updatejson(installed_json_path.c_str(), installed_apps);
-    }
+//     if (app_name != updateNAME)
+//     {
+//       installed_apps[app_name] = app;
+//       updatejson(installed_json_path.c_str(), installed_apps);
+//     }
 
-    cout << "Installed: " << app_name << endl;
-  }
-  catch (const exception &e)
-  {
-    cerr << "Install error: " << e.what() << endl;
-    return 0;
-  }
+//     cout << "Installed: " << app_name << endl;
+//   }
+//   catch (const exception &e)
+//   {
+//     cerr << "Install error: " << e.what() << endl;
+//     return 0;
+//   }
 
-  return 1;
-}
+//   return 1;
+// }

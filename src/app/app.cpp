@@ -46,8 +46,8 @@ void App::initArguments()
 {
 	try
 	{
-		json json_obj = getjson("public/packages/manifest.json");
-		argc <= 1 ? printHelp(json_obj) : parseArguments(json_obj);
+		// json json_obj = getjson("public/packages/manifest.json");
+		// argc <= 1 ? printHelp(json_obj) : parseArguments(json_obj);
 	}
 	catch (const exception &e)
 	{
@@ -95,8 +95,8 @@ void App::parseArguments(const json &json_obj)
 			if (json_obj.contains(arg))
 			{
 				cout << ": " << json_obj[arg] << " - installing " << endl;
-				if (install(json_obj[arg]))
-					cout << "installed";
+				// if (install(json_obj[arg]))
+				// cout << "installed";
 			}
 			else
 			{
