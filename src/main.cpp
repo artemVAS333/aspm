@@ -26,7 +26,7 @@ int main()
 	// app.run();
 
 	const char *url = "https://github.com/artemVAS333/test/archive/refs/tags/v0.0.1-hello.tar.gz";
-	const char *outfilename = "mytool-v0.0.1.tar.gz";
+	const char *outfilename = "bin/mytool-v0.0.1.tar.gz";
 
 	CURL *curl = curl_easy_init();
 	FILE *fp;
